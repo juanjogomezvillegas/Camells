@@ -1,5 +1,3 @@
-//package Uf4.CamellsJuanJoseGomezVillegas;
-
 import acm.graphics.*;
 import acm.program.*;
 import java.util.ArrayList;
@@ -9,7 +7,8 @@ public class CamellsJuanJoseGomezVillegas extends GraphicsProgram {
     private int daltImg;
     int daltLinies;
     int baixLinies;
-    private int numero;
+    private int numero = 0;
+    private boolean CarreraAcabada = false;
 
     public static void main(String[] args) {
         new CamellsJuanJoseGomezVillegas().start(args);
@@ -34,16 +33,18 @@ public class CamellsJuanJoseGomezVillegas extends GraphicsProgram {
             baixLinies += 50;
         }
 
-        for (GImage camellActual : ArrayCamellsImatge) {
-            while (camellActual.getY() <= 900) {
-                if (camellActual.getY() == 900) {
-                    break;
-                } else {
-                    daltImg = 0;
-                    for (GImage camellActual2 : ArrayCamellsImatge) {
-                        numero = getNumeroAleatori();
+        while (CarreraAcabada == false) {
+            if (CarreraAcabada == true) {
+                break;
+            } else {
+                daltImg = 0;
+                for (GImage camellActual : ArrayCamellsImatge) {
+                    if (camellActual.getY() >= 900) {
+                        CarreraAcabada = true;
+                    } else {
+                        numero += getNumeroAleatori();
 
-                        camellActual2.setLocation(numero, daltImg);
+                        camellActual.setLocation(numero, daltImg);
 
                         daltImg += 50;
                     }
