@@ -4,6 +4,7 @@ import acm.graphics.*;
 import acm.program.*;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.Scanner;
 
 public class CamellsJuanJoseGomezVillegas extends GraphicsProgram {
     private int daltImg;
