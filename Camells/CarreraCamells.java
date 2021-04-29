@@ -1,18 +1,24 @@
+package Uf4.Camells;
 
 import acm.graphics.*;
 import acm.program.*;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class CamellsJuanJoseGomezVillegas extends GraphicsProgram {
-    private String ruta = "src/UF4/CamellsJuanJoseGomezVillegas";
+/**
+ * Juan José Gómez Villegas
+ * Jorge Luis Martinez Bermudez
+ * **/
+
+public class CarreraCamells extends GraphicsProgram {
+    private String ruta = "src/UF4/Camells";
     private int daltLinies;
     private int baixLinies;
     private int numero;
     private int posicioEstrella;
 
     public static void main(String[] args) {
-        new CamellsJuanJoseGomezVillegas().start(args);
+        new CarreraCamells().start(args);
     }
 
     public void init() {
@@ -20,7 +26,7 @@ public class CamellsJuanJoseGomezVillegas extends GraphicsProgram {
     }
 
     public void run() {
-        Camell camells = new Camell();
+        Camells camells = new Camells();
 
         ArrayList<String> rutaImatgesCamells = new ArrayList<>();
 
@@ -78,7 +84,7 @@ public class CamellsJuanJoseGomezVillegas extends GraphicsProgram {
     }
 }
 
-class Camell extends GraphicsProgram {
+class Camells extends GraphicsProgram {
     private int daltImg;
 
     public ArrayList<GImage> getArrayImatgeCamell(ArrayList<String> rutaImatgesCamells, ArrayList<GImage> ImatgesCamells) {
