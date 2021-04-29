@@ -19,6 +19,7 @@ public class CarreraCamells extends GraphicsProgram {
     private int baixLinies;
     private int numero;
     private int posicioEstrella;
+    private GImage camellGuanyador;
 
     public static void main(String[] args) {
         new CarreraCamells().start(args);
@@ -58,8 +59,8 @@ public class CarreraCamells extends GraphicsProgram {
 
         for (int i = 1; i <= 100; i++) {
             for (GImage camellActual : ArrayCamellsImatge) {
-                if (camellActual.getY() == LiniaMeta.getY()) {
-                    posicioEstrella = (int) camellActual.getX();
+                if (camellActual.getY() >= LiniaMeta.getY()) {
+                    posicioEstrella = (int) camellActual.getY();
                     break;
                 } else {
                     numero = getNumeroAleatori();
@@ -69,19 +70,31 @@ public class CarreraCamells extends GraphicsProgram {
             }
         }
 
-        /*GImage camellGuanyador = new GImage("");
         for (int i = 1; i < ArrayCamellsImatge.size(); i++) {
-            if (ArrayCamellsImatge.get(i).getY() > ArrayCamellsImatge.get(i-1).getY()) {
-                camellGuanyador = ArrayCamellsImatge.get(i);
-            } else {
-                camellGuanyador = ArrayCamellsImatge.get(i-1);
+            if (i == 1) {
+                if (ArrayCamellsImatge.get(i).getX() > ArrayCamellsImatge.get(i-1).getX()) {
+                    camellGuanyador = ArrayCamellsImatge.get(i);
+                } else {
+                    camellGuanyador = ArrayCamellsImatge.get(i-1);
+                }
             }
-            if (ArrayCamellsImatge.get(i).getY() > camellGuanyador.getY()) {
-                camellGuanyador = ArrayCamellsImatge.get(i);
+            if (i > 1 && i < ArrayCamellsImatge.size()-1) {
+                if (camellGuanyador.getX() > ArrayCamellsImatge.get(i).getX()) {
+                    camellGuanyador = camellGuanyador;
+                } else {
+                    camellGuanyador = ArrayCamellsImatge.get(i);
+                }
             }
-        }*/
+            if (i == ArrayCamellsImatge.size()-1) {
+                if (camellGuanyador.getX() > ArrayCamellsImatge.get(i).getX()) {
+                    posicioEstrella = (int) camellGuanyador.getY();
+                } else {
+                    posicioEstrella = (int) ArrayCamellsImatge.get(i).getY();
+                }
+            }
+        }
 
-        setMostraEstrella(0);
+        setMostraEstrella(posicioEstrella);
     }
 
     public void setLinies(int esquerra, int dreta, int dalt, int baix) {
