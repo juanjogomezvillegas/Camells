@@ -80,9 +80,13 @@ public class CarreraCamells extends GraphicsProgram {
                     posicioEstrella = (int) camellActual.getY();
                     break;
                 } else {
-                    numero = getNumeroAleatori();
+                    if (camellActual.getX() != 200) {
+                        numero = getNumeroAleatori();
 
-                    camellActual.move(numero, 0);
+                        if (numero != 10) {
+                            camellActual.move(numero, 0);
+                        }
+                    }
                 }
             }
         }
