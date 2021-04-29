@@ -60,7 +60,7 @@ public class CarreraCamells extends GraphicsProgram {
     }
 
     public void setCarrera(ArrayList<GImage> ArrayCamellsImatge, GLine LiniaMeta) {
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 1; i <= 105; i++) {
             for (GImage actual : ArrayCamellsImatge) {
                 if (actual.getY() >= LiniaMeta.getX()) {
                     posicioEstrella = (int) actual.getY();

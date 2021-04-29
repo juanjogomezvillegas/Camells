@@ -18,6 +18,8 @@ public class HerenciaCamells extends CarreraCamells {
     private int daltImg;
     private int daltLinies;
     private int baixLinies;
+    private int posicioEstrella;
+    private int numero;
 
     public static void main(String[] args) {
         new HerenciaCamells().start(args);
@@ -49,31 +51,5 @@ public class HerenciaCamells extends CarreraCamells {
         }
 
         setPreparaPista(ArrayCamellsImatge);
-    }
-
-    public void setPreparaPista(ArrayList<GImage> ArrayCamellsImatge) {
-        LiniaMeta = new GLine(900, 900, 900, 0);
-        add(LiniaMeta);
-
-        int comptador = 1;
-        daltLinies = 50;
-        baixLinies = 50;
-        for (GImage actual : ArrayCamellsImatge) {
-            GLabel num = new GLabel(String.valueOf(comptador));
-            num.setLocation(3, daltLinies);
-            num.setFont("Arial-25");
-            add(num);
-
-            add(actual);
-            actual.setSize(50, 50);
-            actual.setLocation(0, daltImg);
-
-            setLinies(0, 900, daltLinies, baixLinies);
-
-            daltImg += 50;
-            daltLinies += 50;
-            baixLinies += 50;
-            comptador++;
-        }
     }
 }
