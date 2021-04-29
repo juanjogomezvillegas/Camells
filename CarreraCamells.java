@@ -14,7 +14,9 @@ import java.util.concurrent.ThreadLocalRandom;
  * **/
 
 public class CarreraCamells extends GraphicsProgram {
-    private String ruta = "src/UF4/Camells";
+    protected String ruta = "src/UF4/Camells";
+    private GLine LiniaMeta;
+    private int daltImg;
     private int daltLinies;
     private int baixLinies;
     private int numero;
@@ -31,8 +33,6 @@ public class CarreraCamells extends GraphicsProgram {
     }
 
     public void run() {
-        Camells camells = new Camells();
-
         ArrayList<String> rutaImatgesCamells = new ArrayList<>();
 
         rutaImatgesCamells.add(ruta+"/Vermell.png");
@@ -42,67 +42,37 @@ public class CarreraCamells extends GraphicsProgram {
         rutaImatgesCamells.add(ruta+"/Lila.png");
         rutaImatgesCamells.add(ruta+"/Groc.png");
 
+        ArrayList<Camells> camells = new ArrayList<>();
+
+        for (String actual : rutaImatgesCamells) {
+            camells.add(new Camells(actual, 0));
+        }
+
         ArrayList<GImage> ArrayCamellsImatge = new ArrayList<>();
 
-        ArrayCamellsImatge = camells.getArrayImatgeCamell(rutaImatgesCamells, ArrayCamellsImatge);
-
-        GLine LiniaMeta = new GLine(900, 900, 900, 0);
-        add(LiniaMeta);
-
-        int comptador = 1;
-        daltLinies = 50;
-        baixLinies = 50;
-        for (GImage camellActual : ArrayCamellsImatge) {
-            GLabel num = new GLabel(String.valueOf(comptador));
-            num.setLocation(3, daltLinies);
-            num.setFont("Arial-25");
-            add(num);
-            add(camellActual);
-            setLinies(0, 900, daltLinies, baixLinies);
-            daltLinies += 50;
-            baixLinies += 50;
-            comptador++;
+        for (Camells actual : camells) {
+            ArrayCamellsImatge.add(actual.getImatgeCamell());
         }
 
-        int posicioEstrella2 = getCarrera(ArrayCamellsImatge, LiniaMeta);
+        setPreparaPista(ArrayCamellsImatge);
 
-        for (int i = 0; i < ArrayCamellsImatge.size(); i++) {
-            if (ArrayCamellsImatge.get(i).getY() == posicioEstrella2) {
-                Guanyador = i;
-                break;
-            }
-        }
-
-        setMostraEstrella(posicioEstrella2);
-
-        JOptionPane.showMessageDialog(null, "GUANYADOR: EL CAMELL "+(Guanyador+1));
+        setCarrera(ArrayCamellsImatge, LiniaMeta);
     }
 
-    public void setLinies(int esquerra, int dreta, int dalt, int baix) {
-        GLine linia1 = new GLine(esquerra, dalt, dreta, baix);
-        add(linia1);
-    }
-
-    public int getNumeroAleatori(int min, int max) {
-        int numero = ThreadLocalRandom.current().nextInt(min, max);
-
-        return numero;
-    }
-
-    public int getCarrera(ArrayList<GImage> ArrayCamellsImatge, GLine LiniaMeta) {
+    public void setCarrera(ArrayList<GImage> ArrayCamellsImatge, GLine LiniaMeta) {
         for (int i = 1; i <= 100; i++) {
-            for (GImage camellActual : ArrayCamellsImatge) {
-                if (camellActual.getY() >= LiniaMeta.getX()) {
-                    posicioEstrella = (int) camellActual.getY();
+            for (GImage actual : ArrayCamellsImatge) {
+                if (actual.getY() >= LiniaMeta.getX()) {
+                    posicioEstrella = (int) actual.getY();
                     break;
                 } else {
-                    if (camellActual.getX() != getNumeroAleatori(200, 300)) {
+                    if (actual.getX() != getNumeroAleatori(200, 300)) {
                         numero = getNumeroAleatori(1, 15);
 
                         if (numero != getNumeroAleatori(5, 10)) {
-                            camellActual.move(numero, 0);
+                            actual.move(numero, 0);
 
-                            camellActual.pause(5);
+                            actual.pause(5);
                         }
                     }
                 }
@@ -133,7 +103,53 @@ public class CarreraCamells extends GraphicsProgram {
             }
         }
 
-        return posicioEstrella;
+        for (int i = 0; i < ArrayCamellsImatge.size(); i++) {
+            if (ArrayCamellsImatge.get(i).getY() == posicioEstrella) {
+                Guanyador = i;
+                break;
+            }
+        }
+
+        setMostraEstrella(posicioEstrella);
+
+        JOptionPane.showMessageDialog(null, "GUANYADOR: EL CAMELL "+(Guanyador+1));
+    }
+
+    public void setPreparaPista(ArrayList<GImage> ArrayCamellsImatge) {
+        LiniaMeta = new GLine(900, 900, 900, 0);
+        add(LiniaMeta);
+
+        int comptador = 1;
+        daltLinies = 50;
+        baixLinies = 50;
+        for (GImage actual : ArrayCamellsImatge) {
+            GLabel num = new GLabel(String.valueOf(comptador));
+            num.setLocation(3, daltLinies);
+            num.setFont("Arial-25");
+            add(num);
+
+            add(actual);
+            actual.setSize(50, 50);
+            actual.setLocation(0, daltImg);
+
+            setLinies(0, 900, daltLinies, baixLinies);
+
+            daltImg += 50;
+            daltLinies += 50;
+            baixLinies += 50;
+            comptador++;
+        }
+    }
+
+    public void setLinies(int esquerra, int dreta, int dalt, int baix) {
+        GLine linia1 = new GLine(esquerra, dalt, dreta, baix);
+        add(linia1);
+    }
+
+    public int getNumeroAleatori(int min, int max) {
+        int numero = ThreadLocalRandom.current().nextInt(min, max);
+
+        return numero;
     }
 
     public void setMostraEstrella(int posicioEstrella) {
@@ -145,32 +161,23 @@ public class CarreraCamells extends GraphicsProgram {
 }
 
 class Camells extends GraphicsProgram {
-    private int daltImg;
+    private String rutaImatge;
+    private int tipusCamell;
 
-    public ArrayList<GImage> getArrayImatgeCamell(ArrayList<String> rutaImatgesCamells, ArrayList<GImage> ImatgesCamells) {
-        for (String imatgeActual : rutaImatgesCamells) {
-            ImatgesCamells.add(getImatgeCamell(imatgeActual));
-        }
+    public Camells(String rutaImatge, int tipus) {
+        this.rutaImatge = rutaImatge;
 
-        daltImg = 0;
-        for (GImage imatgeActual : ImatgesCamells) {
-            setCamellPosicio(imatgeActual, 50, 50, 0, daltImg);
-
-            daltImg += 50;
-        }
-
-        return ImatgesCamells;
+        this.tipusCamell = tipus;
     }
 
-    public GImage getImatgeCamell(String rutaImatge) {
+    public int getTipusCamell() {
+        return tipusCamell;
+    }
+
+    public GImage getImatgeCamell() {
         GImage camell = new GImage(rutaImatge);
 
         return camell;
-    }
-
-    public void setCamellPosicio(GImage imatge, int amplada, int alcada, int costat, int dalt) {
-        imatge.setSize(amplada, alcada);
-        imatge.setLocation(costat, dalt);
     }
 }
 
