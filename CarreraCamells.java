@@ -2,6 +2,8 @@ package Uf4.Camells;
 
 import acm.graphics.*;
 import acm.program.*;
+
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -20,6 +22,7 @@ public class CarreraCamells extends GraphicsProgram {
     private int numero;
     private int posicioEstrella;
     private GImage camellGuanyador;
+    private int Guanyador;
 
     public static void main(String[] args) {
         new CarreraCamells().start(args);
@@ -59,7 +62,16 @@ public class CarreraCamells extends GraphicsProgram {
 
         int posicioEstrella2 = getCarrera(ArrayCamellsImatge, LiniaMeta);
 
+        for (int i = 0; i < ArrayCamellsImatge.size(); i++) {
+            if (ArrayCamellsImatge.get(i).getY() == posicioEstrella2) {
+                Guanyador = i;
+                break;
+            }
+        }
+
         setMostraEstrella(posicioEstrella2);
+
+        JOptionPane.showMessageDialog(null, "GUANYADOR: EL CAMELL "+(Guanyador+1));
     }
 
     public void setLinies(int esquerra, int dreta, int dalt, int baix) {
@@ -80,11 +92,13 @@ public class CarreraCamells extends GraphicsProgram {
                     posicioEstrella = (int) camellActual.getY();
                     break;
                 } else {
-                    if (camellActual.getX() != 200) {
+                    if (camellActual.getX() != 300) {
                         numero = getNumeroAleatori();
 
                         if (numero != 10) {
                             camellActual.move(numero, 0);
+
+                            camellActual.pause(5);
                         }
                     }
                 }
