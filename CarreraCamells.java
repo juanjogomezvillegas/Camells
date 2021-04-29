@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author Juan José Gómez Villegas
- * @author Jorge Luis Martinez Bermudez
+ * @author Jorge Luís Martínez Bermudez
  * @author
  * @author
  * @author
@@ -57,6 +57,23 @@ public class CarreraCamells extends GraphicsProgram {
             baixLinies += 50;
         }
 
+        int posicioEstrella2 = getCarrera(ArrayCamellsImatge, LiniaMeta);
+
+        setMostraEstrella(posicioEstrella2);
+    }
+
+    public void setLinies(int esquerra, int dreta, int dalt, int baix) {
+        GLine linia1 = new GLine(esquerra, dalt, dreta, baix);
+        add(linia1);
+    }
+
+    public int getNumeroAleatori() {
+        int numero = ThreadLocalRandom.current().nextInt(1, 15);
+
+        return numero;
+    }
+
+    public int getCarrera(ArrayList<GImage> ArrayCamellsImatge, GLine LiniaMeta) {
         for (int i = 1; i <= 100; i++) {
             for (GImage camellActual : ArrayCamellsImatge) {
                 if (camellActual.getY() >= LiniaMeta.getY()) {
@@ -94,18 +111,7 @@ public class CarreraCamells extends GraphicsProgram {
             }
         }
 
-        setMostraEstrella(posicioEstrella);
-    }
-
-    public void setLinies(int esquerra, int dreta, int dalt, int baix) {
-        GLine linia1 = new GLine(esquerra, dalt, dreta, baix);
-        add(linia1);
-    }
-
-    public int getNumeroAleatori() {
-        int numero = ThreadLocalRandom.current().nextInt(1, 15);
-
-        return numero;
+        return posicioEstrella;
     }
 
     public void setMostraEstrella(int posicioEstrella) {
