@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Juan José Gómez Villegas
- * Jorge Luis Martinez Bermudez
+ * @author Juan José Gómez Villegas
+ * @author Jorge Luis Martinez Bermudez
+ * @author
+ * @author
+ * @author
  * **/
 
 public class CarreraCamells extends GraphicsProgram {
@@ -66,10 +69,19 @@ public class CarreraCamells extends GraphicsProgram {
             }
         }
 
-        GImage estrella = new GImage(ruta+"/star.png");
-        estrella.setSize(50, 50);
-        estrella.setLocation(900, posicioEstrella);
-        add(estrella);
+        /*GImage camellGuanyador = new GImage("");
+        for (int i = 1; i < ArrayCamellsImatge.size(); i++) {
+            if (ArrayCamellsImatge.get(i).getY() > ArrayCamellsImatge.get(i-1).getY()) {
+                camellGuanyador = ArrayCamellsImatge.get(i);
+            } else {
+                camellGuanyador = ArrayCamellsImatge.get(i-1);
+            }
+            if (ArrayCamellsImatge.get(i).getY() > camellGuanyador.getY()) {
+                camellGuanyador = ArrayCamellsImatge.get(i);
+            }
+        }*/
+
+        setMostraEstrella(0);
     }
 
     public void setLinies(int esquerra, int dreta, int dalt, int baix) {
@@ -81,6 +93,13 @@ public class CarreraCamells extends GraphicsProgram {
         int numero = ThreadLocalRandom.current().nextInt(1, 15);
 
         return numero;
+    }
+
+    public void setMostraEstrella(int posicioEstrella) {
+        Estrella estrella = new Estrella(ruta+"/star.png");
+        estrella.setTamanyLocaltizacioEstrella(posicioEstrella);
+        GImage imgEstrella = estrella.getRetornaEstrella();
+        add(imgEstrella);
     }
 }
 
@@ -111,5 +130,22 @@ class Camells extends GraphicsProgram {
     public void setCamellPosicio(GImage imatge, int amplada, int alcada, int costat, int dalt) {
         imatge.setSize(amplada, alcada);
         imatge.setLocation(costat, dalt);
+    }
+}
+
+class Estrella extends GraphicsProgram {
+    private GImage estrella;
+
+    public Estrella(String ruta) {
+        estrella = new GImage(ruta);
+    }
+
+    public void setTamanyLocaltizacioEstrella(int posicioEstrella) {
+        estrella.setSize(50, 50);
+        estrella.setLocation(900, posicioEstrella);
+    }
+
+    public GImage getRetornaEstrella() {
+        return estrella;
     }
 }
