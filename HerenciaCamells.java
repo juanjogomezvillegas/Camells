@@ -44,22 +44,11 @@ public class HerenciaCamells extends CarreraCamells {
 
         ArrayList<GImage> ArrayCamellsImatge = new ArrayList<>();
 
-        ArrayList<GImage> imatgeCamellsRapids = new ArrayList<>();
-        ArrayList<GImage> imatgeCamellsFondistes = new ArrayList<>();
-        ArrayList<GImage> imatgeCamellsAntiSenars = new ArrayList<>();
-        ArrayList<GImage> imatgeCamellsFlipats = new ArrayList<>();
-
         for (Camells actual : camells) {
-            if (actual.getTipusCamell() == 1) {
-                imatgeCamellsRapids.add(actual.getImatgeCamell());
-            } else if (actual.getTipusCamell() == 2) {
-                imatgeCamellsFondistes.add(actual.getImatgeCamell());
-            } else if (actual.getTipusCamell() == 3) {
-                imatgeCamellsAntiSenars.add(actual.getImatgeCamell());
-            } else if (actual.getTipusCamell() == 4) {
-                imatgeCamellsFlipats.add(actual.getImatgeCamell());
-            }
+            ArrayCamellsImatge.add(actual.getImatgeCamell());
         }
+
+        setPreparaPista(ArrayCamellsImatge);
     }
 
     public void setPreparaPista(ArrayList<GImage> ArrayCamellsImatge) {
