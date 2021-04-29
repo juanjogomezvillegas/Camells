@@ -4,6 +4,7 @@ import acm.graphics.*;
 import acm.program.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -51,13 +52,19 @@ public class CarreraCamells extends GraphicsProgram {
         GLine LiniaMeta = new GLine(900, 900, 900, 0);
         add(LiniaMeta);
 
+        int comptador = 1;
         daltLinies = 50;
         baixLinies = 50;
         for (GImage camellActual : ArrayCamellsImatge) {
+            GLabel num = new GLabel(String.valueOf(comptador));
+            num.setLocation(3, daltLinies);
+            num.setFont("Arial-25");
+            add(num);
             add(camellActual);
             setLinies(0, 900, daltLinies, baixLinies);
             daltLinies += 50;
             baixLinies += 50;
+            comptador++;
         }
 
         int posicioEstrella2 = getCarrera(ArrayCamellsImatge, LiniaMeta);
@@ -79,8 +86,8 @@ public class CarreraCamells extends GraphicsProgram {
         add(linia1);
     }
 
-    public int getNumeroAleatori() {
-        int numero = ThreadLocalRandom.current().nextInt(1, 15);
+    public int getNumeroAleatori(int min, int max) {
+        int numero = ThreadLocalRandom.current().nextInt(min, max);
 
         return numero;
     }
@@ -88,14 +95,14 @@ public class CarreraCamells extends GraphicsProgram {
     public int getCarrera(ArrayList<GImage> ArrayCamellsImatge, GLine LiniaMeta) {
         for (int i = 1; i <= 100; i++) {
             for (GImage camellActual : ArrayCamellsImatge) {
-                if (camellActual.getY() >= LiniaMeta.getY()) {
+                if (camellActual.getY() >= LiniaMeta.getX()) {
                     posicioEstrella = (int) camellActual.getY();
                     break;
                 } else {
-                    if (camellActual.getX() != 300) {
-                        numero = getNumeroAleatori();
+                    if (camellActual.getX() != getNumeroAleatori(200, 300)) {
+                        numero = getNumeroAleatori(1, 15);
 
-                        if (numero != 10) {
+                        if (numero != getNumeroAleatori(5, 10)) {
                             camellActual.move(numero, 0);
 
                             camellActual.pause(5);
