@@ -2,18 +2,15 @@ package Uf4.Camells;
 
 import acm.graphics.*;
 import acm.program.*;
-
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author Juan José Gómez Villegas
  * @author Jorge Luís Martínez Bermudez
- * @author
- * @author
- * @author
+ * @author Edgar Peréz
+ * @author Jordi Risco
  * **/
 
 public class CarreraCamells extends GraphicsProgram {
