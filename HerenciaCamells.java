@@ -75,11 +75,9 @@ public class HerenciaCamells extends CarreraCamells {
                 if (camells.get(i).getTipusCamell() == 1) {
                     numero = getNumeroAleatori(1, 50);
                     ArrayCamellsImatge.get(i).move((numero * 2), 0);
-                    ArrayCamellsImatge.get(i).pause(10);
                 } else if (camells.get(i).getTipusCamell() == 2) {
                     numero = getNumeroAleatori(5, 10);
                     ArrayCamellsImatge.get(i).move(numero, 0);
-                    ArrayCamellsImatge.get(i).pause(5);
                 } else if (camells.get(i).getTipusCamell() == 3) {
                     numero = getNumeroAleatori(1, 100);
                     if ((numero % 2) == 0) {
@@ -87,13 +85,11 @@ public class HerenciaCamells extends CarreraCamells {
                     } else {
                         ArrayCamellsImatge.get(i).move(2, 0);
                     }
-                    ArrayCamellsImatge.get(i).pause(5);
                 } else if (camells.get(i).getTipusCamell() == 4) {
                     ArrayCamellsImatge.get(i).move(1, 0);
-                    ArrayCamellsImatge.get(i).pause(1);
                     ArrayCamellsImatge.get(i).move(-1, 0);
-                    ArrayCamellsImatge.get(i).pause(1);
                 }
+                ArrayCamellsImatge.get(i).pause(5);
             }
         }
 
