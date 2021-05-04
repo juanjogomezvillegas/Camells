@@ -17,27 +17,30 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /*Crea la Classe "CarreraCamells" que tingui amb herencia la classe "GraphicsProgram"*/
 public class CarreraCamells extends GraphicsProgram {
-    protected String ruta = "src/UF4/Camells";
-    private GLine LiniaMeta;
-    private int daltImg;
-    private int daltLinies;
-    private int baixLinies;
-    private int numero;
-    private int posicioEstrella;
-    private GImage camellGuanyador;
-    private int Guanyador;
+    protected String ruta = "src/UF4/Camells";//Crea la variable "ruta"
+    private GLine LiniaMeta;//Crea la variable "LiniaMeta"
+    private int daltImg;//Crea la variable "daltImg"
+    private int daltLinies;//Crea la variable "daltLinies"
+    private int baixLinies;//Crea la variable "baixLinies"
+    private int numero;//Crea la variable "numero"
+    private int posicioEstrella;//Crea la variable "posicioEstrella"
+    private GImage camellGuanyador;//Crea la variable "camellGuanyador"
+    private int Guanyador;//Crea la variable "Guanyador"
 
+    /*Crea el metode main (principal)*/
     public static void main(String[] args) {
         new CarreraCamells().start(args);
     }
 
+    /*Crea el metode setter "init", que establira el tamany de la finestra en 975x750*/
     public void init() {
         setSize(975, 750);
     }
 
+    /*Crea el metode setter "run", que executara la finestra*/
     public void run() {
+        /*Creem el ArrayList "rutaImatgesCamells", on posarem la ruta de les imatges dels camells*/
         ArrayList<String> rutaImatgesCamells = new ArrayList<>();
-
         rutaImatgesCamells.add(ruta+"/Vermell.png");
         rutaImatgesCamells.add(ruta+"/Blau.png");
         rutaImatgesCamells.add(ruta+"/Marro.png");
@@ -45,23 +48,30 @@ public class CarreraCamells extends GraphicsProgram {
         rutaImatgesCamells.add(ruta+"/Lila.png");
         rutaImatgesCamells.add(ruta+"/Groc.png");
 
+        /*Crea el ArrayList "camells"*/
         ArrayList<Camells> camells = new ArrayList<>();
 
+        /*Instanciem el metode "Camells", per cada valor del ArrayList "rutaImatgesCamells"*/
         for (String actual : rutaImatgesCamells) {
             camells.add(new Camells(actual, 0));
         }
 
+        /*Crea el ArrayList "ArrayCamellsImatge"*/
         ArrayList<GImage> ArrayCamellsImatge = new ArrayList<>();
 
+        /*I per cada valor del ArrayList "camells", executa el metode getter "getImatgeCamell" (que retornara un GImage)*/
         for (Camells actual : camells) {
             ArrayCamellsImatge.add(actual.getImatgeCamell());
         }
 
+        /*Executa el metode setter "setPreparaPista"*/
         setPreparaPista(ArrayCamellsImatge);
 
+        /*Executa el metode setter "setCarrera"*/
         setCarrera(ArrayCamellsImatge, LiniaMeta);
     }
 
+    /*Crea el metode setter "setCarrera"*/
     public void setCarrera(ArrayList<GImage> ArrayCamellsImatge, GLine LiniaMeta) {
         for (int i = 1; i <= 105; i++) {
             for (GImage actual : ArrayCamellsImatge) {
@@ -118,6 +128,7 @@ public class CarreraCamells extends GraphicsProgram {
         JOptionPane.showMessageDialog(null, "GUANYADOR: EL CAMELL "+(Guanyador+1));
     }
 
+    /*Crea el metode setter "setPreparaPista"*/
     public void setPreparaPista(ArrayList<GImage> ArrayCamellsImatge) {
         LiniaMeta = new GLine(900, 900, 900, 0);
         add(LiniaMeta);
@@ -144,17 +155,20 @@ public class CarreraCamells extends GraphicsProgram {
         }
     }
 
+    /*Crea el metode setter "setLinies"*/
     public void setLinies(int esquerra, int dreta, int dalt, int baix) {
         GLine linia1 = new GLine(esquerra, dalt, dreta, baix);
         add(linia1);
     }
 
+    /*Crea el metode getter "getNumeroAleatori"*/
     public int getNumeroAleatori(int min, int max) {
         int numero = ThreadLocalRandom.current().nextInt(min, max);
 
         return numero;
     }
 
+    /*Crea el metode setter "setMostraEstrella"*/
     public void setMostraEstrella(int posicioEstrella) {
         Estrella estrella = new Estrella(ruta+"/star.png");
         estrella.setTamanyLocaltizacioEstrella(posicioEstrella);
@@ -163,6 +177,7 @@ public class CarreraCamells extends GraphicsProgram {
     }
 }
 
+/*Crea la Classe "Camells" que tingui amb herencia la classe "GraphicsProgram"*/
 class Camells extends GraphicsProgram {
     private String rutaImatge;
     private int tipusCamell;
@@ -184,6 +199,7 @@ class Camells extends GraphicsProgram {
     }
 }
 
+/*Crea la Classe "Estrella" que tingui amb herencia la classe "GraphicsProgram"*/
 class Estrella extends GraphicsProgram {
     private GImage estrella;
 
