@@ -11,6 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Jorge Luís Martínez Bermudez
  * @author Edgar Peréz
  * @author Jordi Risco
+ * @author Kirill Lupenkov
  * **/
 
 public class CarreraCamells extends GraphicsProgram {
