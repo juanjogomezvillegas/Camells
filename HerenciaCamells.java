@@ -15,19 +15,18 @@ import java.util.ArrayList;
 
 /*Crea la Classe "HerenciaCamells" que tingui amb herencia la classe "CarreraCamells"*/
 public class HerenciaCamells extends CarreraCamells {
-    private int numero;
-    private int posicioEstrella;
-    private GImage camellGuanyador;
-    private int Guanyador;
+    private int numero;//Crea la variable "numero"
+    private int posicioEstrella;//Crea la variable "posicioEstrella"
+    private GImage camellGuanyador;//Crea la variable "camellGuanyador"
+    private int Guanyador;//Crea la variable "Guanyador"
 
-    public static void main(String[] args) {
-        new HerenciaCamells().start(args);
-    }
+    /*Crea el metode main (principal)*/
+    public static void main(String[] args) {new HerenciaCamells().start(args);}
 
-    public void init() {
-        setSize(975, 750);
-    }
+    /*Crea el metode setter "init", que establira el tamany de la finestra en 975x750*/
+    public void init() {setSize(975, 750);}
 
+    /*Crea el metode setter "run", que executara la finestra*/
     public void run() {
         ArrayList<String> rutaImatgesCamells = new ArrayList<>();
         rutaImatgesCamells.add(ruta+"/Vermell.png");
@@ -70,6 +69,7 @@ public class HerenciaCamells extends CarreraCamells {
         setCarrera2(ArrayCamellsImatge, camells);
     }
 
+    /*Crea el metode setter "setCarrera2"*/
     public void setCarrera2(ArrayList<GImage> ArrayCamellsImatge, ArrayList<Camells> camells) {
         for (int x = 1; x <= 15; x++) {
             for (int i = 0; i < ArrayCamellsImatge.size() && i < camells.size(); i++) {
