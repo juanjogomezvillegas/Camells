@@ -54,7 +54,7 @@ public class CarreraCamells extends GraphicsProgram {
         /*Crea el ArrayList "camells"*/
         ArrayList<Camells> camells = new ArrayList<>();
 
-        /*Instanciem el metode "Camells", per cada valor del ArrayList "rutaImatgesCamells"*/
+        /*Instanciem el metode "Camells", afegint un valor més al ArrayList "rutaImatgesCamells"*/
         for (String actual : rutaImatgesCamells) {
             camells.add(new Camells(actual, 0));
         }

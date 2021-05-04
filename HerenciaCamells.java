@@ -34,6 +34,7 @@ public class HerenciaCamells extends CarreraCamells {
 
     /*Crea el metode setter "run", que executara la finestra*/
     public void run() {
+        /*Creem el ArrayList "rutaImatgesCamells", on posarem la ruta de les imatges dels camells*/
         ArrayList<String> rutaImatgesCamells = new ArrayList<>();
         rutaImatgesCamells.add(ruta+"/Vermell.png");
         rutaImatgesCamells.add(ruta+"/Vermell.png");
@@ -46,6 +47,11 @@ public class HerenciaCamells extends CarreraCamells {
         rutaImatgesCamells.add(ruta+"/Lila.png");
         rutaImatgesCamells.add(ruta+"/Lila.png");
 
+        /*Creem el ArrayList "tipusCamells", on posarem el tipus dels camells, poden ser un dels següents tipus:
+        * 1 : Camells Ràpids
+        * 2 : Camells Fondistes
+        * 3 : Camells AntiSenars
+        * 4 : Camells Flipats*/
         ArrayList<Integer> tipusCamells = new ArrayList<>();
         tipusCamells.add(1);
         tipusCamells.add(1);
@@ -58,20 +64,26 @@ public class HerenciaCamells extends CarreraCamells {
         tipusCamells.add(4);
         tipusCamells.add(4);
 
+        /*Creem el ArrayList "camells"*/
         ArrayList<Camells> camells = new ArrayList<>();
 
-        for (int i = 0, j = 0; i < rutaImatgesCamells.size() && j < tipusCamells.size(); i++, j++) {
-            camells.add(new Camells(rutaImatgesCamells.get(i), tipusCamells.get(j)));
+        /*Instanciem el metode "Camells", afegint un valor més al ArrayList "rutaImatgesCamells"*/
+        for (int i = 0; i < rutaImatgesCamells.size() && i < tipusCamells.size(); i++) {
+            camells.add(new Camells(rutaImatgesCamells.get(i), tipusCamells.get(i)));
         }
 
+        /*Creem el ArrayList "ArrayCamellsImatge"*/
         ArrayList<GImage> ArrayCamellsImatge = new ArrayList<>();
 
+        /*I per cada valor del ArrayList "camells", executa el metode getter "getImatgeCamell" (que retornara un GImage)*/
         for (Camells actual : camells) {
             ArrayCamellsImatge.add(actual.getImatgeCamell());
         }
 
+        /*Executa el metode setter "setPreparaPista"*/
         setPreparaPista(ArrayCamellsImatge);
 
+        /*Executa el metode setter "setCarrera2"*/
         setCarrera2(ArrayCamellsImatge, camells);
     }
 
