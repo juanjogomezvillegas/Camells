@@ -1,10 +1,9 @@
 package Uf4.Camells;
 
+/*Importa les següents llibraries*/
 import acm.graphics.*;
-import acm.program.*;
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author Juan José Gómez Villegas
@@ -14,6 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Kirill Lupenkov
  * **/
 
+/*Crea la Classe "HerenciaCamells" que tingui amb herencia la classe "CarreraCamells"*/
 public class HerenciaCamells extends CarreraCamells {
     private int numero;
     private int posicioEstrella;
