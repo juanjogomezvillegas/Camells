@@ -28,14 +28,10 @@ public class CarreraCamells extends GraphicsProgram {
     private int Guanyador;//Crea la variable "Guanyador"
 
     /*Crea el metode main (principal)*/
-    public static void main(String[] args) {
-        new CarreraCamells().start(args);
-    }
+    public static void main(String[] args) {new CarreraCamells().start(args);}
 
     /*Crea el metode setter "init", que establira el tamany de la finestra en 975x750*/
-    public void init() {
-        setSize(975, 750);
-    }
+    public void init() {setSize(975, 750);}
 
     /*Crea el metode setter "run", que executara la finestra*/
     public void run() {
@@ -73,18 +69,22 @@ public class CarreraCamells extends GraphicsProgram {
 
     /*Crea el metode setter "setCarrera"*/
     public void setCarrera(ArrayList<GImage> ArrayCamellsImatge, GLine LiniaMeta) {
+        /*Repetira el següent bucle for 105 vegades*/
         for (int i = 1; i <= 105; i++) {
+            /*I amb el següent bucle foreach recorrera l'ArrayList "ArrayCamellsImatge"*/
             for (GImage actual : ArrayCamellsImatge) {
-                if (actual.getY() >= LiniaMeta.getX()) {
+                /*Si el camell esta o la superat a la posicio "Y" de la LiniaMeta, guarda la posicio del camell en la variable "posicioEstrella"*/
+                if (actual.getY() >= LiniaMeta.getY()) {
                     posicioEstrella = (int) actual.getY();
                     break;
-                } else {
-                    if (actual.getX() != getNumeroAleatori(200, 300)) {
+                } else {/*Si no, comprovara si el camell no està en una posicio aletoria entre 100 i 300*/
+                    if (actual.getX() != getNumeroAleatori(100, 300)) {
+                        /*Si es compleix executa el metode getter "getNumeroAleatori"*/
                         numero = getNumeroAleatori(1, 15);
-
+                        /*I si el numero generat aleatoriament es diferent a un numero aleatori entre 5 i 10*/
                         if (numero != getNumeroAleatori(5, 10)) {
+                            /*Mou al camell el numero que hagui sortit i pausa 5 segons*/
                             actual.move(numero, 0);
-
                             actual.pause(5);
                         }
                     }
@@ -92,77 +92,99 @@ public class CarreraCamells extends GraphicsProgram {
             }
         }
 
+        /*Amb el següent bucle recorrer l'ArrayList "ArrayCamellsImatge"*/
         for (int i = 1; i < ArrayCamellsImatge.size(); i++) {
+            /*Si la "i" es igual a 1*/
             if (i == 1) {
+                /*Si la posicio X del valor de "i" es major a la posicio X del valor "i-1"*/
                 if (ArrayCamellsImatge.get(i).getX() > ArrayCamellsImatge.get(i-1).getX()) {
+                    /*"camellGuanyador" sera igual al valor de "i"*/
                     camellGuanyador = ArrayCamellsImatge.get(i);
-                } else {
+                } else {/*Si no, "camellGuanyador" sera igual al valor de "i-1"*/
                     camellGuanyador = ArrayCamellsImatge.get(i-1);
                 }
             }
+            /*Si la "i" esta entre 1 i la longitud del ArrayList "ArrayCamellsImatge" menys 1*/
             if (i > 1 && i < ArrayCamellsImatge.size()-1) {
+                /*Si la posicio X del valor de "camellGuanyador" es major a la posicio X del valor de "i"*/
                 if (camellGuanyador.getX() > ArrayCamellsImatge.get(i).getX()) {
+                    /*"camellGuanyador" sera igual a "camellGuanyador"*/
                     camellGuanyador = camellGuanyador;
-                } else {
+                } else {/*Si no, "camellGuanyador" sera igual al valor de "i"*/
                     camellGuanyador = ArrayCamellsImatge.get(i);
                 }
             }
+            /*Si la "i" es igual a la longitud del ArrayList "ArrayCamellsImatge" menys 1*/
             if (i == ArrayCamellsImatge.size()-1) {
+                /*Si la posicio X del valor de "camellGuanyador" es major a la posicio X del valor de "i"*/
                 if (camellGuanyador.getX() > ArrayCamellsImatge.get(i).getX()) {
+                    /*"posicioEstrella" sera igual a la posicio Y de "camellGuanyador"*/
                     posicioEstrella = (int) camellGuanyador.getY();
                 } else {
+                    /*Si no, "posicioEstrella" sera igual a la posicio Y del valor de "i"*/
                     posicioEstrella = (int) ArrayCamellsImatge.get(i).getY();
                 }
             }
         }
 
+        /*Amb el següent bucle recorrer l'ArrayList "ArrayCamellsImatge"*/
         for (int i = 0; i < ArrayCamellsImatge.size(); i++) {
+            /*Quan trobi el camell que tingui la posicio Y igual al valor de "posicioEstrella", "Guanyador" sera igual a "i" i trenca el bucle*/
             if (ArrayCamellsImatge.get(i).getY() == posicioEstrella) {
                 Guanyador = i;
                 break;
             }
         }
 
+        /*Executa el metode setter "setMostraEstrella"*/
         setMostraEstrella(posicioEstrella);
 
+        /*Mostra el camell guanyador (1, 2, 3, 4, 5, etc...)*/
         JOptionPane.showMessageDialog(null, "GUANYADOR: EL CAMELL "+(Guanyador+1));
     }
 
     /*Crea el metode setter "setPreparaPista"*/
     public void setPreparaPista(ArrayList<GImage> ArrayCamellsImatge) {
+        /*Crea la LiniaMeta que estara a la posicio 900*/
         LiniaMeta = new GLine(900, 900, 900, 0);
         add(LiniaMeta);
 
-        int comptador = 1;
-        daltLinies = 50;
-        baixLinies = 50;
+        int comptador = 1;//Crea la variable "comptador"
+        daltLinies = 50;//Assigna a "daltLinies" el valor 50
+        baixLinies = 50;//Assigna a "baixLinies" el valor 50
+        /*I amb el següent bucle foreach, recorrer l'ArrayList "ArrayCamellsImatge"*/
         for (GImage actual : ArrayCamellsImatge) {
+            /*Creara etiquetes amb el valor de "comptador"*/
             GLabel num = new GLabel(String.valueOf(comptador));
             num.setLocation(3, daltLinies);
             num.setFont("Arial-25");
             add(num);
 
+            /*Afegira els camells a la posicio inicial "0", i li assignara la mida "50x50"*/
             add(actual);
             actual.setSize(50, 50);
             actual.setLocation(0, daltImg);
 
+            /*Separa als camells per Linies, per crear les linies executara el metode setter "setLinies"*/
             setLinies(0, 900, daltLinies, baixLinies);
 
-            daltImg += 50;
-            daltLinies += 50;
-            baixLinies += 50;
-            comptador++;
+            daltImg += 50;//Incrementa "daltImg" en 50
+            daltLinies += 50;//Incrementa "daltLinies" en 50
+            baixLinies += 50;//Incrementa "baixLinies" en 50
+            comptador++;//Incrementa "comptador" en 1
         }
     }
 
     /*Crea el metode setter "setLinies"*/
     public void setLinies(int esquerra, int dreta, int dalt, int baix) {
+        /*Crea una linia en la posicio especificada en els parametres*/
         GLine linia1 = new GLine(esquerra, dalt, dreta, baix);
         add(linia1);
     }
 
     /*Crea el metode getter "getNumeroAleatori"*/
     public int getNumeroAleatori(int min, int max) {
+        /*Genera un numero aleatori entre el "min" i el "max" (parametres) i el retorna*/
         int numero = ThreadLocalRandom.current().nextInt(min, max);
 
         return numero;
@@ -170,6 +192,7 @@ public class CarreraCamells extends GraphicsProgram {
 
     /*Crea el metode setter "setMostraEstrella"*/
     public void setMostraEstrella(int posicioEstrella) {
+        /*Crea una estrella que sera a la posicio especificada en el parametre*/
         Estrella estrella = new Estrella(ruta+"/star.png");
         estrella.setTamanyLocaltizacioEstrella(posicioEstrella);
         GImage imgEstrella = estrella.getRetornaEstrella();
