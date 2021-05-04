@@ -202,40 +202,43 @@ public class CarreraCamells extends GraphicsProgram {
 
 /*Crea la Classe "Camells" que tingui amb herencia la classe "GraphicsProgram"*/
 class Camells extends GraphicsProgram {
-    private String rutaImatge;
-    private int tipusCamell;
+    private String rutaImatge;//Crea la variable "rutaImatge"
+    private int tipusCamell;//Crea la variable "tipusCamell"
 
+    /*Crea el metode constructor "Camells"*/
     public Camells(String rutaImatge, int tipus) {
-        this.rutaImatge = rutaImatge;
+        this.rutaImatge = rutaImatge;//assigna a "rutaImatge" el valor del parametre "rutaImatge"
 
-        this.tipusCamell = tipus;
+        this.tipusCamell = tipus;//assigna a "tipusCamell" el valor del parametre "tipus"
     }
 
-    public int getTipusCamell() {
-        return tipusCamell;
-    }
+    /*Crea el metode getter "getTipusCamell", que retornara el valor de "tipusCamell"*/
+    public int getTipusCamell() {return tipusCamell;}
 
+    /*Crea el metode getter "getImatgeCamell"*/
     public GImage getImatgeCamell() {
+        /*Crea una imatge amb el valor de "rutaImatge" com a ruta*/
         GImage camell = new GImage(rutaImatge);
-
+        /*I retorna la imatge "camell"*/
         return camell;
     }
 }
 
 /*Crea la Classe "Estrella" que tingui amb herencia la classe "GraphicsProgram"*/
 class Estrella extends GraphicsProgram {
-    private GImage estrella;
+    private GImage estrella;//Crea la variable "estrella"
 
-    public Estrella(String ruta) {
-        estrella = new GImage(ruta);
-    }
+    /*Crea el metode constructor "Estrella", que li assigni a la imatge "estrella" la ruta del parametre "ruta"*/
+    public Estrella(String ruta) {estrella = new GImage(ruta);}
 
+    /*Crea el metode setter "setTamanyLocaltizacioEstrella"*/
     public void setTamanyLocaltizacioEstrella(int posicioEstrella) {
+        /*estableix a la imatge "estrella" el tamany "50x50"*/
         estrella.setSize(50, 50);
+        /*I afegeix la estrella a la posicio "900" i al valor del parametre "posicioEstrella"*/
         estrella.setLocation(900, posicioEstrella);
     }
 
-    public GImage getRetornaEstrella() {
-        return estrella;
-    }
+    /*Crea el metode getter "getRetornaEstrella", que retorni la imatge "estrella"*/
+    public GImage getRetornaEstrella() {return estrella;}
 }
