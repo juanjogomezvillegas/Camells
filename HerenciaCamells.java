@@ -89,32 +89,49 @@ public class HerenciaCamells extends CarreraCamells {
 
     /*Crea el metode setter "setCarrera2"*/
     public void setCarrera2(ArrayList<GImage> ArrayCamellsImatge, ArrayList<Camells> camells) {
+        /*Repetira el següent bucle for 15 vegades*/
         for (int x = 1; x <= 15; x++) {
+            /*I recorrera els ArrayLists "ArrayCamellsImatge" i "camells"*/
             for (int i = 0; i < ArrayCamellsImatge.size() && i < camells.size(); i++) {
-                if (camells.get(i).getTipusCamell() == 1) {
+                if (camells.get(i).getTipusCamell() == 1) {//Si el camell es Ràpid (1)
+                    /*Executa el metode getter "getNumeroAleatori", per generar un numero aleatori entre 1 i 50*/
                     numero = getNumeroAleatori(1, 50);
+                    /*I abancara el numero que hagui sortit aleatori multiplicat per 2*/
                     ArrayCamellsImatge.get(i).move((numero * 2), 0);
                     ArrayCamellsImatge.get(i).pause(5);
-                } else if (camells.get(i).getTipusCamell() == 2) {
+                } else if (camells.get(i).getTipusCamell() == 2) {//Si el camell es Fondista (2)
+                    /*Executa el metode getter "getNumeroAleatori", per generar un numero aleatori entre 5 i 10*/
                     numero = getNumeroAleatori(5, 10);
+                    /*I abancara el numero que hagui sortit aleatori*/
                     ArrayCamellsImatge.get(i).move(numero, 0);
                     ArrayCamellsImatge.get(i).pause(5);
-                } else if (camells.get(i).getTipusCamell() == 3) {
+                } else if (camells.get(i).getTipusCamell() == 3) {//Si el camell es AntiSenar (3)
+                    /*Executa el metode getter "getNumeroAleatori", per generar un numero aleatori entre 1 i 100*/
                     numero = getNumeroAleatori(1, 100);
+                    /*I només abancara si el numero que ha sortit aleatori es parell*/
                     if ((numero % 2) == 0) {
                         ArrayCamellsImatge.get(i).move(numero, 0);
                     } else {
+                        /*Si el numero es senar, abancara només 2*/
                         ArrayCamellsImatge.get(i).move(2, 0);
                     }
                     ArrayCamellsImatge.get(i).pause(5);
-                } else if (camells.get(i).getTipusCamell() == 4) {
+                } else if (camells.get(i).getTipusCamell() == 4) {//Si el camell es Flipats (4)
+                    /*Executa el metode getter "getNumeroAleatori", per generar un numero aleatori entre 1 i 50*/
                     numero = getNumeroAleatori(1, 50);
+                    /*I abancara el numero que hagui sortit aleatori*/
                     ArrayCamellsImatge.get(i).move(numero, 0);
+
+                    /*Executa el metode getter "getNumeroAleatori", per generar un numero aleatori entre -10 i -1*/
                     numero = getNumeroAleatori(-10, -1);
+                    /*Si el camell està a la posicio X major que 10*/
                     if (ArrayCamellsImatge.get(i).getX() > 10) {
+                        /*Retrocedeix el numero que hagui sortit aleatori*/
                         ArrayCamellsImatge.get(i).move(numero, 0);
                     } else {
+                        /*Si no, si el camell està a la posicio X major que 0*/
                         if (ArrayCamellsImatge.get(i).getX() > 0) {
+                            /*Retrocedeix -1*/
                             ArrayCamellsImatge.get(i).move(-1, 0);
                         }
                     }
@@ -123,39 +140,7 @@ public class HerenciaCamells extends CarreraCamells {
             }
         }
 
-        for (int i = 1; i < ArrayCamellsImatge.size(); i++) {
-            if (i == 1) {
-                if (ArrayCamellsImatge.get(i).getX() > ArrayCamellsImatge.get(i-1).getX()) {
-                    camellGuanyador = ArrayCamellsImatge.get(i);
-                } else {
-                    camellGuanyador = ArrayCamellsImatge.get(i-1);
-                }
-            }
-            if (i > 1 && i < ArrayCamellsImatge.size()-1) {
-                if (camellGuanyador.getX() > ArrayCamellsImatge.get(i).getX()) {
-                    camellGuanyador = camellGuanyador;
-                } else {
-                    camellGuanyador = ArrayCamellsImatge.get(i);
-                }
-            }
-            if (i == ArrayCamellsImatge.size()-1) {
-                if (camellGuanyador.getX() > ArrayCamellsImatge.get(i).getX()) {
-                    posicioEstrella = (int) camellGuanyador.getY();
-                } else {
-                    posicioEstrella = (int) ArrayCamellsImatge.get(i).getY();
-                }
-            }
-        }
-
-        for (int i = 0; i < ArrayCamellsImatge.size(); i++) {
-            if (ArrayCamellsImatge.get(i).getY() == posicioEstrella) {
-                Guanyador = i;
-                break;
-            }
-        }
-
-        setMostraEstrella(posicioEstrella);
-
-        JOptionPane.showMessageDialog(null, "GUANYADOR: EL CAMELL "+(Guanyador+1));
+        /*Executa el metode setter "setComprovarGuanyador"*/
+        setComprovarGuanyador(ArrayCamellsImatge);
     }
 }

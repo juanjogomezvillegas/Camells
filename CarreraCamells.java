@@ -99,6 +99,12 @@ public class CarreraCamells extends GraphicsProgram {
             }
         }
 
+        /*Executa el metode setter "setComprovarGuanyador"*/
+        setComprovarGuanyador(ArrayCamellsImatge);
+    }
+
+    /*Crea el metode setter "setComprovarGuanyador"*/
+    public void setComprovarGuanyador(ArrayList<GImage> ArrayCamellsImatge) {
         /*Amb el següent bucle recorrer l'ArrayList "ArrayCamellsImatge"*/
         for (int i = 1; i < ArrayCamellsImatge.size(); i++) {
             /*Si la "i" es igual a 1*/
