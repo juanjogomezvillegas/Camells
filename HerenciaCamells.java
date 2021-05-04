@@ -2,7 +2,6 @@ package Uf4.Camells;
 
 /*Importa les següents llibraries*/
 import acm.graphics.*;
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
