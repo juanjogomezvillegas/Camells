@@ -3,6 +3,7 @@ package Uf4.Camells;
 /*Importa les següents llibraries*/
 import acm.graphics.*;
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -23,8 +24,13 @@ public class HerenciaCamells extends CarreraCamells {
     /*Crea el metode main (principal)*/
     public static void main(String[] args) {new HerenciaCamells().start(args);}
 
-    /*Crea el metode setter "init", que establira el tamany de la finestra en 975x750*/
-    public void init() {setSize(975, 750);}
+    /*Crea el metode setter "init"*/
+    public void init() {
+        /*Estableix el tamany de la finestra en 975x750*/
+        setSize(975, 750);
+        /*Estableix el color de fons de la finestra en el color especificat*/
+        setBackground(Color.DARK_GRAY);
+    }
 
     /*Crea el metode setter "run", que executara la finestra*/
     public void run() {

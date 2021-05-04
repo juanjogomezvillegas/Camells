@@ -4,7 +4,9 @@ package Uf4.Camells;
 import acm.graphics.*;
 import acm.program.*;
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -30,8 +32,13 @@ public class CarreraCamells extends GraphicsProgram {
     /*Crea el metode main (principal)*/
     public static void main(String[] args) {new CarreraCamells().start(args);}
 
-    /*Crea el metode setter "init", que establira el tamany de la finestra en 975x750*/
-    public void init() {setSize(975, 750);}
+    /*Crea el metode setter "init"*/
+    public void init() {
+        /*Estableix el tamany de la finestra en 975x750*/
+        setSize(975, 750);
+        /*Estableix el color de fons de la finestra en el color especificat*/
+        setBackground(Color.DARK_GRAY);
+    }
 
     /*Crea el metode setter "run", que executara la finestra*/
     public void run() {
@@ -147,6 +154,7 @@ public class CarreraCamells extends GraphicsProgram {
     public void setPreparaPista(ArrayList<GImage> ArrayCamellsImatge) {
         /*Crea la LiniaMeta que estara a la posicio 900*/
         LiniaMeta = new GLine(900, 900, 900, 0);
+        LiniaMeta.setColor(Color.LIGHT_GRAY);
         add(LiniaMeta);
 
         int comptador = 1;//Crea la variable "comptador"
@@ -157,7 +165,8 @@ public class CarreraCamells extends GraphicsProgram {
             /*Creara etiquetes amb el valor de "comptador"*/
             GLabel num = new GLabel(String.valueOf(comptador));
             num.setLocation(3, daltLinies);
-            num.setFont("Arial-25");
+            num.setColor(Color.LIGHT_GRAY);
+            num.setFont("Arial-30");
             add(num);
 
             /*Afegira els camells a la posicio inicial "0", i li assignara la mida "50x50"*/
@@ -179,6 +188,7 @@ public class CarreraCamells extends GraphicsProgram {
     public void setLinies(int esquerra, int dreta, int dalt, int baix) {
         /*Crea una linia en la posicio especificada en els parametres*/
         GLine linia1 = new GLine(esquerra, dalt, dreta, baix);
+        linia1.setColor(Color.LIGHT_GRAY);
         add(linia1);
     }
 
