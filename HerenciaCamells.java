@@ -15,13 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * **/
 
 public class HerenciaCamells extends CarreraCamells {
-    private GLine LiniaMeta;
-    private int daltImg;
-    private int daltLinies;
-    private int baixLinies;
     private int numero;
-    private int numeroDavant;
-    private int numeroEnrere;
     private int posicioEstrella;
     private GImage camellGuanyador;
     private int Guanyador;
@@ -96,11 +90,16 @@ public class HerenciaCamells extends CarreraCamells {
                     }
                     ArrayCamellsImatge.get(i).pause(5);
                 } else if (camells.get(i).getTipusCamell() == 4) {
-                    numeroDavant = getNumeroAleatori(1, 50);
-                    numeroEnrere = getNumeroAleatori(1, 50);
-                    ArrayCamellsImatge.get(i).move(numeroDavant, 0);
-                    ArrayCamellsImatge.get(i).pause(5);
-                    ArrayCamellsImatge.get(i).move(numeroEnrere, 0);
+                    numero = getNumeroAleatori(1, 50);
+                    ArrayCamellsImatge.get(i).move(numero, 0);
+                    numero = getNumeroAleatori(-10, -1);
+                    if (ArrayCamellsImatge.get(i).getX() > 10) {
+                        ArrayCamellsImatge.get(i).move(numero, 0);
+                    } else {
+                        if (ArrayCamellsImatge.get(i).getX() > 0) {
+                            ArrayCamellsImatge.get(i).move(-1, 0);
+                        }
+                    }
                     ArrayCamellsImatge.get(i).pause(5);
                 }
             }
