@@ -1,6 +1,6 @@
 package Uf4.Camells;
 
-/*Importa les següents llibraries:*/
+/*Importa les següents llibraries*/
 import acm.graphics.*;
 import acm.program.*;
 import javax.swing.*;
