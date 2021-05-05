@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.*;
 import java.util.Base64;
-import java.lang.Math;
 
 /**
  * @author Juan José Gómez Villegas
