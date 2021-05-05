@@ -1,6 +1,6 @@
 package Uf4.Camells;
 
-/*Importa les següents llibraries*/
+/*Importa les següents llibraries:*/
 import acm.graphics.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.*;
 import java.util.Base64;
-import java.lang.Math;
 
 /**
  * @author Juan José Gómez Villegas
