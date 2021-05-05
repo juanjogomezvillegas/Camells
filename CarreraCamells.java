@@ -39,7 +39,6 @@ public class CarreraCamells extends GraphicsProgram {
         setBackground(Color.DARK_GRAY);
     }
 
-    /*Crea el metode setter "run", que executara la finestra*/
     public void run() {
         /*Creem el ArrayList "rutaImatgesCamells", on posarem la ruta de les imatges dels camells*/
         ArrayList<String> rutaImatgesCamells = new ArrayList<>();
