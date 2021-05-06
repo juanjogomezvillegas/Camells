@@ -93,7 +93,7 @@ public class HerenciaCamells extends CarreraCamells {
     }
 
     /*Crea el metode getter "getCarrera2"*/
-    public int getCarrera2(ArrayList<GImage> ArrayCamellsImatge, ArrayList<Camells> camells) {
+    private int getCarrera2(ArrayList<GImage> ArrayCamellsImatge, ArrayList<Camells> camells) {
         int numero;//Crea la variable "numero"
         int posicioJugador = 0;//Crea la variable "posicioJugador"
         /*I recorrera els ArrayLists "ArrayCamellsImatge" i "camells"*/

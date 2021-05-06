@@ -81,7 +81,7 @@ public class CarreraCamells extends GraphicsProgram {
     }
 
     /*Crea el metode getter "getCarrera"*/
-    public int getCarrera(ArrayList<GImage> ArrayCamellsImatge, GLine LiniaMeta) {
+    private int getCarrera(ArrayList<GImage> ArrayCamellsImatge, GLine LiniaMeta) {
         int numero;//Crea la variable "numero"
         int posicioJugador = 0;//Crea la variable "posicioJugador"
         /*I amb el següent bucle foreach recorrera l'ArrayList "ArrayCamellsImatge"*/
@@ -194,7 +194,7 @@ public class CarreraCamells extends GraphicsProgram {
     }
 
     /*Crea el metode setter "setLinies"*/
-    public void setLinies(int esquerra, int dreta, int dalt, int baix) {
+    private void setLinies(int esquerra, int dreta, int dalt, int baix) {
         /*Crea una linia en la posicio especificada en els parametres*/
         GLine linia1 = new GLine(esquerra, dalt, dreta, baix);
         linia1.setColor(Color.LIGHT_GRAY);
