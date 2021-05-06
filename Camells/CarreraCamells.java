@@ -128,10 +128,7 @@ public class CarreraCamells extends GraphicsProgram {
             /*Si la "i" esta entre 1 i la longitud del ArrayList "ArrayCamellsImatge" menys 1*/
             if (i > 1 && i < ArrayCamellsImatge.size()-1) {
                 /*Si la posicio X del valor de "camellGuanyador" es major a la posicio X del valor de "i"*/
-                if (camellGuanyador.getX() > ArrayCamellsImatge.get(i).getX()) {
-                    /*"camellGuanyador" sera igual a "camellGuanyador"*/
-                    camellGuanyador = camellGuanyador;
-                } else {/*Si no, "camellGuanyador" sera igual al valor de "i"*/
+                if (camellGuanyador.getX() <= ArrayCamellsImatge.get(i).getX()) {
                     camellGuanyador = ArrayCamellsImatge.get(i);
                 }
             }
