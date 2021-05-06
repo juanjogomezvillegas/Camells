@@ -86,31 +86,45 @@ public class HerenciaCamells extends CarreraCamells {
         /*Executa el metode setter "setPreparaPista"*/
         setPreparaPista(ArrayCamellsImatge);
 
-        /*Executa el metode setter "setCarrera2"*/
-        setCarrera2(ArrayCamellsImatge, camells);
+        int posicioJugador = 0;//Crea la variable "posicioJugador"
+        /*El bucle while funcionara mentre la variable "posicioJugador" sigui diferent a la posicio X de "LiniaMeta" menys 100*/
+        while (posicioJugador != (LiniaMeta.getX()-100)) {
+            /*Executa el metode getter "getCarrera2"*/
+            posicioJugador = getCarrera2(ArrayCamellsImatge, camells);
+            /*Si la variable "posicioJugador" es igual a la posicio X de "LiniaMeta" menys 100, trenca el bucle while*/
+            if (posicioJugador >= (LiniaMeta.getX()-100)) {
+                break;
+            }
+        }
+
+        /*I Executa el metode setter "setComprovarGuanyador"*/
+        setComprovarGuanyador(ArrayCamellsImatge);
     }
 
-    /*Crea el metode setter "setCarrera2"*/
-    public void setCarrera2(ArrayList<GImage> ArrayCamellsImatge, ArrayList<Camells> camells) {
-        /*Repetira el següent bucle for 15 vegades*/
-        for (int x = 1; x <= 15; x++) {
-            /*I recorrera els ArrayLists "ArrayCamellsImatge" i "camells"*/
-            for (int i = 0; i < ArrayCamellsImatge.size() && i < camells.size(); i++) {
+    /*Crea el metode getter "getCarrera2"*/
+    public int getCarrera2(ArrayList<GImage> ArrayCamellsImatge, ArrayList<Camells> camells) {
+        int posicioJugador = 0;//Crea la variable "posicioJugador"
+        /*I recorrera els ArrayLists "ArrayCamellsImatge" i "camells"*/
+        for (int i = 0; i < ArrayCamellsImatge.size() && i < camells.size(); i++) {
+            /*Si el camell "actual" esta a una posicio X major o igual que la posicio X de "LiniaMeta" menys 100*/
+            if (ArrayCamellsImatge.get(i).getX() >= (LiniaMeta.getX()-100)) {
+                /*Guarda la posicio del camell en la variable "posicioJugador", i trenca el bucle for*/
+                posicioJugador = (int) ArrayCamellsImatge.get(i).getX();
+                break;
+            } else {/*Si nom fara el següent*/
                 if (camells.get(i).getTipusCamell() == 1) {//Si el camell es Ràpid (1)
                     /*Executa el metode getter "getNumeroAleatori", per generar un numero aleatori entre 1 i 50*/
-                    numero = getNumeroAleatori(1, 50);
+                    numero = getNumeroAleatori(1, 40);
                     /*I abancara el numero que hagui sortit aleatori multiplicat per 2*/
                     ArrayCamellsImatge.get(i).move((numero * 2), 0);
-                    ArrayCamellsImatge.get(i).pause(5);
                 } else if (camells.get(i).getTipusCamell() == 2) {//Si el camell es Fondista (2)
                     /*Executa el metode getter "getNumeroAleatori", per generar un numero aleatori entre 5 i 10*/
                     numero = getNumeroAleatori(5, 10);
                     /*I abancara el numero que hagui sortit aleatori*/
                     ArrayCamellsImatge.get(i).move(numero, 0);
-                    ArrayCamellsImatge.get(i).pause(5);
                 } else if (camells.get(i).getTipusCamell() == 3) {//Si el camell es AntiSenar (3)
                     /*Executa el metode getter "getNumeroAleatori", per generar un numero aleatori entre 1 i 100*/
-                    numero = getNumeroAleatori(1, 100);
+                    numero = getNumeroAleatori(1, 40);
                     /*I només abancara si el numero que ha sortit aleatori es parell*/
                     if ((numero % 2) == 0) {
                         ArrayCamellsImatge.get(i).move(numero, 0);
@@ -118,10 +132,9 @@ public class HerenciaCamells extends CarreraCamells {
                         /*Si el numero es senar, abancara només 2*/
                         ArrayCamellsImatge.get(i).move(2, 0);
                     }
-                    ArrayCamellsImatge.get(i).pause(5);
                 } else if (camells.get(i).getTipusCamell() == 4) {//Si el camell es Flipats (4)
                     /*Executa el metode getter "getNumeroAleatori", per generar un numero aleatori entre 1 i 50*/
-                    numero = getNumeroAleatori(1, 50);
+                    numero = getNumeroAleatori(1, 40);
                     /*I abancara el numero que hagui sortit aleatori*/
                     ArrayCamellsImatge.get(i).move(numero, 0);
 
@@ -138,12 +151,11 @@ public class HerenciaCamells extends CarreraCamells {
                             ArrayCamellsImatge.get(i).move(-1, 0);
                         }
                     }
-                    ArrayCamellsImatge.get(i).pause(5);
                 }
             }
+            ArrayCamellsImatge.get(i).pause(7);/*I pausa en 7 segons*/
         }
 
-        /*Executa el metode setter "setComprovarGuanyador"*/
-        setComprovarGuanyador(ArrayCamellsImatge);
+        return posicioJugador;/*Retorna el valor de "posicioJugador"*/
     }
 }

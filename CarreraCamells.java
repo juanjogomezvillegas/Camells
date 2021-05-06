@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /*Crea la Classe "CarreraCamells" que tingui amb herencia la classe "GraphicsProgram"*/
 public class CarreraCamells extends GraphicsProgram {
     protected String ruta = "src/UF4/Camells";//Crea la variable "ruta"
-    private GLine LiniaMeta;//Crea la variable "LiniaMeta"
+    protected GLine LiniaMeta;//Crea la variable "LiniaMeta"
     private int daltImg;//Crea la variable "daltImg"
     private int daltLinies;//Crea la variable "daltLinies"
     private int baixLinies;//Crea la variable "baixLinies"
@@ -69,37 +69,46 @@ public class CarreraCamells extends GraphicsProgram {
         /*Executa el metode setter "setPreparaPista"*/
         setPreparaPista(ArrayCamellsImatge);
 
-        /*Executa el metode setter "setCarrera"*/
-        setCarrera(ArrayCamellsImatge, LiniaMeta);
-    }
-
-    /*Crea el metode setter "setCarrera"*/
-    public void setCarrera(ArrayList<GImage> ArrayCamellsImatge, GLine LiniaMeta) {
-        /*Repetira el següent bucle for 105 vegades*/
-        for (int i = 1; i <= 105; i++) {
-            /*I amb el següent bucle foreach recorrera l'ArrayList "ArrayCamellsImatge"*/
-            for (GImage actual : ArrayCamellsImatge) {
-                /*Si el camell esta o la superat a la posicio "Y" de la LiniaMeta, guarda la posicio del camell en la variable "posicioEstrella"*/
-                if (actual.getY() >= LiniaMeta.getY()) {
-                    posicioEstrella = (int) actual.getY();
-                    break;
-                } else {/*Si no, comprovara si el camell no està en una posicio aletoria entre 100 i 300*/
-                    if (actual.getX() != getNumeroAleatori(100, 300)) {
-                        /*Si es compleix executa el metode getter "getNumeroAleatori"*/
-                        numero = getNumeroAleatori(1, 15);
-                        /*I si el numero generat aleatoriament es diferent a un numero aleatori entre 5 i 10*/
-                        if (numero != getNumeroAleatori(5, 10)) {
-                            /*Mou al camell el numero que hagui sortit i pausa 5 segons*/
-                            actual.move(numero, 0);
-                            actual.pause(5);
-                        }
-                    }
-                }
+        int posicioJugador = 0;//Crea la variable "posicioJugador"
+        while (posicioJugador != (LiniaMeta.getX()-50)) {
+            /*Executa el metode getter "getCarrera"*/
+            posicioJugador = getCarrera(ArrayCamellsImatge, LiniaMeta);
+            /*Si la variable "posicioJugador" es igual a la posicio X de "LiniaMeta" menys 100, trenca el bucle while*/
+            if (posicioJugador >= (LiniaMeta.getX()-50)) {
+                break;
             }
         }
 
         /*Executa el metode setter "setComprovarGuanyador"*/
         setComprovarGuanyador(ArrayCamellsImatge);
+    }
+
+    /*Crea el metode getter "getCarrera"*/
+    public int getCarrera(ArrayList<GImage> ArrayCamellsImatge, GLine LiniaMeta) {
+        int posicioJugador = 0;//Crea la variable "posicioJugador"
+        /*I amb el següent bucle foreach recorrera l'ArrayList "ArrayCamellsImatge"*/
+        for (GImage actual : ArrayCamellsImatge) {
+            /*Si el camell "actual" esta a una posicio X major o igual que la posicio X de "LiniaMeta" menys 100*/
+            if (actual.getX() >= (LiniaMeta.getX()-50)) {
+                /*Guarda la posicio del camell en les variables "posicioJugador" i "posicioEstrella", i trenca el bucle for*/
+                posicioJugador = (int) actual.getX();
+                posicioEstrella = (int) actual.getY();
+                break;
+            } else {/*Si no, comprovara si el camell no està en una posicio aletoria entre 100 i 300*/
+                if (actual.getX() != getNumeroAleatori(100, 300)) {
+                    /*Si es compleix executa el metode getter "getNumeroAleatori"*/
+                    numero = getNumeroAleatori(1, 15);
+                    /*I si el numero generat aleatoriament es diferent a un numero aleatori entre 5 i 10*/
+                    if (numero != getNumeroAleatori(5, 10)) {
+                        /*Mou al camell el numero que hagui sortit i pausa 5 segons*/
+                        actual.move(numero, 0);
+                        actual.pause(5);
+                    }
+                }
+            }
+        }
+
+        return posicioJugador;/*Retorna el valor de "posicioJugador"*/
     }
 
     /*Crea el metode setter "setComprovarGuanyador"*/
