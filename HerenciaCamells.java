@@ -16,9 +16,6 @@ import java.util.ArrayList;
 /*Crea la Classe "HerenciaCamells" que tingui amb herencia la classe "CarreraCamells"*/
 public class HerenciaCamells extends CarreraCamells {
     private int numero;//Crea la variable "numero"
-    private int posicioEstrella;//Crea la variable "posicioEstrella"
-    private GImage camellGuanyador;//Crea la variable "camellGuanyador"
-    private int Guanyador;//Crea la variable "Guanyador"
 
     /*Crea el metode main (principal)*/
     public static void main(String[] args) {new HerenciaCamells().start(args);}
