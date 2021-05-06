@@ -51,10 +51,10 @@ public class HerenciaCamells extends CarreraCamells {
         rutaImatgesCamells.add(ruta+"/Lila.png");
 
         /*Creem el ArrayList "tipusCamells", on posarem el tipus dels camells, poden ser un dels següents tipus:
-        * 1 : Camells Ràpids
-        * 2 : Camells Fondistes
-        * 3 : Camells AntiSenars
-        * 4 : Camells Flipats*/
+         * 1 : Camells Ràpids
+         * 2 : Camells Fondistes
+         * 3 : Camells AntiSenars
+         * 4 : Camells Flipats*/
         ArrayList<Integer> tipusCamells = new ArrayList<>();
         tipusCamells.add(1);
         tipusCamells.add(1);

@@ -16,6 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Kirill Lupenkov
  * **/
 
+
 /*Crea la Classe "CarreraCamells" que tingui amb herencia la classe "GraphicsProgram"*/
 public class CarreraCamells extends GraphicsProgram {
     protected String ruta = "src/UF4/Camells";//Crea la variable "ruta"
