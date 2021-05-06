@@ -70,6 +70,7 @@ public class CarreraCamells extends GraphicsProgram {
         setPreparaPista(ArrayCamellsImatge);
 
         int posicioJugador = 0;//Crea la variable "posicioJugador"
+        /*El bucle while funcionara mentre la variable "posicioJugador" sigui diferent a la posicio X de "LiniaMeta" menys 100*/
         while (posicioJugador != (LiniaMeta.getX()-50)) {
             /*Executa el metode getter "getCarrera"*/
             posicioJugador = getCarrera(ArrayCamellsImatge, LiniaMeta);
