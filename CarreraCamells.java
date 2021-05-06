@@ -1,4 +1,4 @@
-package Uf4.Camells;
+package Camells;
 
 /*Importa les següents llibraries*/
 import acm.graphics.*;
@@ -16,10 +16,9 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Kirill Lupenkov
  * **/
 
-
 /*Crea la Classe "CarreraCamells" que tingui amb herencia la classe "GraphicsProgram"*/
 public class CarreraCamells extends GraphicsProgram {
-    protected String ruta = "src/UF4/Camells";//Crea la variable "ruta"
+    protected String ruta = "src/Camells";//Crea la variable "ruta"
     protected GLine LiniaMeta;//Crea la variable "LiniaMeta"
     private int daltImg;//Crea la variable "daltImg"
     private int daltLinies;//Crea la variable "daltLinies"

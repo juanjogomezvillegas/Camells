@@ -1,13 +1,9 @@
-package Uf4.Camells;
+package Camells;
 
 /*Importa les següents llibraries*/
 import acm.graphics.*;
 import java.awt.*;
 import java.util.ArrayList;
-
-import java.util.Scanner;
-import java.awt.*;
-import java.util.Base64;
 
 /**
  * @author Juan José Gómez Villegas
