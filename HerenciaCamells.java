@@ -15,8 +15,6 @@ import java.util.ArrayList;
 
 /*Crea la Classe "HerenciaCamells" que tingui amb herencia la classe "CarreraCamells"*/
 public class HerenciaCamells extends CarreraCamells {
-    private int numero;//Crea la variable "numero"
-
     /*Crea el metode main (principal)*/
     public static void main(String[] args) {new HerenciaCamells().start(args);}
 
@@ -81,11 +79,11 @@ public class HerenciaCamells extends CarreraCamells {
 
         int posicioJugador = 0;//Crea la variable "posicioJugador"
         /*El bucle while funcionara mentre la variable "posicioJugador" sigui diferent a la posicio X de "LiniaMeta" menys 100*/
-        while (posicioJugador != (LiniaMeta.getX()-100)) {
+        while (posicioJugador != (LiniaMeta.getX()-75)) {
             /*Executa el metode getter "getCarrera2"*/
             posicioJugador = getCarrera2(ArrayCamellsImatge, camells);
             /*Si la variable "posicioJugador" es igual a la posicio X de "LiniaMeta" menys 100, trenca el bucle while*/
-            if (posicioJugador >= (LiniaMeta.getX()-100)) {
+            if (posicioJugador >= (LiniaMeta.getX()-75)) {
                 break;
             }
         }
@@ -96,18 +94,19 @@ public class HerenciaCamells extends CarreraCamells {
 
     /*Crea el metode getter "getCarrera2"*/
     public int getCarrera2(ArrayList<GImage> ArrayCamellsImatge, ArrayList<Camells> camells) {
+        int numero;//Crea la variable "numero"
         int posicioJugador = 0;//Crea la variable "posicioJugador"
         /*I recorrera els ArrayLists "ArrayCamellsImatge" i "camells"*/
         for (int i = 0; i < ArrayCamellsImatge.size() && i < camells.size(); i++) {
             /*Si el camell "actual" esta a una posicio X major o igual que la posicio X de "LiniaMeta" menys 100*/
-            if (ArrayCamellsImatge.get(i).getX() >= (LiniaMeta.getX()-100)) {
+            if (ArrayCamellsImatge.get(i).getX() >= (LiniaMeta.getX()-75)) {
                 /*Guarda la posicio del camell en la variable "posicioJugador", i trenca el bucle for*/
                 posicioJugador = (int) ArrayCamellsImatge.get(i).getX();
                 break;
             } else {/*Si nom fara el següent*/
                 if (camells.get(i).getTipusCamell() == 1) {//Si el camell es Ràpid (1)
                     /*Executa el metode getter "getNumeroAleatori", per generar un numero aleatori entre 1 i 50*/
-                    numero = getNumeroAleatori(1, 40);
+                    numero = getNumeroAleatori(1, 50);
                     /*I abancara el numero que hagui sortit aleatori multiplicat per 2*/
                     ArrayCamellsImatge.get(i).move((numero * 2), 0);
                 } else if (camells.get(i).getTipusCamell() == 2) {//Si el camell es Fondista (2)

@@ -21,9 +21,6 @@ public class CarreraCamells extends GraphicsProgram {
     protected String ruta = "src/Camells";//Crea la variable "ruta"
     protected GLine LiniaMeta;//Crea la variable "LiniaMeta"
     private int daltImg;//Crea la variable "daltImg"
-    private int daltLinies;//Crea la variable "daltLinies"
-    private int baixLinies;//Crea la variable "baixLinies"
-    private int numero;//Crea la variable "numero"
     private int posicioEstrella;//Crea la variable "posicioEstrella"
     private GImage camellGuanyador;//Crea la variable "camellGuanyador"
     private int Guanyador;//Crea la variable "Guanyador"
@@ -85,6 +82,7 @@ public class CarreraCamells extends GraphicsProgram {
 
     /*Crea el metode getter "getCarrera"*/
     public int getCarrera(ArrayList<GImage> ArrayCamellsImatge, GLine LiniaMeta) {
+        int numero;//Crea la variable "numero"
         int posicioJugador = 0;//Crea la variable "posicioJugador"
         /*I amb el següent bucle foreach recorrera l'ArrayList "ArrayCamellsImatge"*/
         for (GImage actual : ArrayCamellsImatge) {
@@ -118,11 +116,11 @@ public class CarreraCamells extends GraphicsProgram {
             /*Si la "i" es igual a 1*/
             if (i == 1) {
                 /*Si la posicio X del valor de "i" es major a la posicio X del valor "i-1"*/
-                if (ArrayCamellsImatge.get(i).getX() > ArrayCamellsImatge.get(i-1).getX()) {
+                if (ArrayCamellsImatge.get(i).getX() > ArrayCamellsImatge.get(0).getX()) {
                     /*"camellGuanyador" sera igual al valor de "i"*/
                     camellGuanyador = ArrayCamellsImatge.get(i);
                 } else {/*Si no, "camellGuanyador" sera igual al valor de "i-1"*/
-                    camellGuanyador = ArrayCamellsImatge.get(i-1);
+                    camellGuanyador = ArrayCamellsImatge.get(0);
                 }
             }
             /*Si la "i" esta entre 1 i la longitud del ArrayList "ArrayCamellsImatge" menys 1*/
@@ -169,8 +167,8 @@ public class CarreraCamells extends GraphicsProgram {
         add(LiniaMeta);
 
         int comptador = 1;//Crea la variable "comptador"
-        daltLinies = 50;//Assigna a "daltLinies" el valor 50
-        baixLinies = 50;//Assigna a "baixLinies" el valor 50
+        int daltLinies = 50;//Assigna a "daltLinies" el valor 50
+        int baixLinies = 50;//Assigna a "baixLinies" el valor 50
         /*I amb el següent bucle foreach, recorrer l'ArrayList "ArrayCamellsImatge"*/
         for (GImage actual : ArrayCamellsImatge) {
             /*Creara etiquetes amb el valor de "comptador"*/
@@ -205,10 +203,8 @@ public class CarreraCamells extends GraphicsProgram {
 
     /*Crea el metode getter "getNumeroAleatori"*/
     public int getNumeroAleatori(int min, int max) {
-        /*Genera un numero aleatori entre el "min" i el "max" (parametres) i el retorna*/
-        int numero = ThreadLocalRandom.current().nextInt(min, max);
-
-        return numero;
+        /*Retorna un numero aleatori entre el "min" i el "max" (parametres) i el retorna*/
+        return ThreadLocalRandom.current().nextInt(min, max);
     }
 
     /*Crea el metode setter "setMostraEstrella"*/
@@ -223,14 +219,14 @@ public class CarreraCamells extends GraphicsProgram {
 
 /*Crea la Classe "Camells" que tingui amb herencia la classe "GraphicsProgram"*/
 class Camells extends GraphicsProgram {
-    private String rutaImatge;//Crea la variable "rutaImatge"
-    private int tipusCamell;//Crea la variable "tipusCamell"
+    private final String rutaImatge;//Crea la variable "rutaImatge"
+    private final int tipusCamell;//Crea la variable "tipusCamell"
 
     /*Crea el metode constructor "Camells"*/
-    public Camells(String rutaImatge, int tipus) {
+    public Camells(String rutaImatge, int tipusCamell) {
         this.rutaImatge = rutaImatge;//assigna a "rutaImatge" el valor del parametre "rutaImatge"
 
-        this.tipusCamell = tipus;//assigna a "tipusCamell" el valor del parametre "tipus"
+        this.tipusCamell = tipusCamell;//assigna a "tipusCamell" el valor del parametre "tipusCamell"
     }
 
     /*Crea el metode getter "getTipusCamell", que retornara el valor de "tipusCamell"*/
@@ -238,16 +234,14 @@ class Camells extends GraphicsProgram {
 
     /*Crea el metode getter "getImatgeCamell"*/
     public GImage getImatgeCamell() {
-        /*Crea una imatge amb el valor de "rutaImatge" com a ruta*/
-        GImage camell = new GImage(rutaImatge);
-        /*I retorna la imatge "camell"*/
-        return camell;
+        /*Instancia i Retorna una imatge amb el valor de "rutaImatge" com a ruta*/
+        return new GImage(rutaImatge);
     }
 }
 
 /*Crea la Classe "Estrella" que tingui amb herencia la classe "GraphicsProgram"*/
 class Estrella extends GraphicsProgram {
-    private GImage estrella;//Crea la variable "estrella"
+    private final GImage estrella;//Crea la variable "estrella"
 
     /*Crea el metode constructor "Estrella", que li assigni a la imatge "estrella" la ruta del parametre "ruta"*/
     public Estrella(String ruta) {estrella = new GImage(ruta);}
