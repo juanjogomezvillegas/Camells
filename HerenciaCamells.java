@@ -78,12 +78,12 @@ public class HerenciaCamells extends CarreraCamells {
         setPreparaPista(ArrayCamellsImatge);
 
         int posicioJugador = 0;//Crea la variable "posicioJugador"
-        /*El bucle while funcionara mentre la variable "posicioJugador" sigui diferent a la posicio X de "LiniaMeta" menys 100*/
-        while (posicioJugador != (LiniaMeta.getX()-75)) {
+        /*El bucle while funcionara mentre la variable "posicioJugador" sigui diferent a la posicio X de "LiniaMeta" menys 67*/
+        while (posicioJugador != (LiniaMeta.getX()-67)) {
             /*Executa el metode getter "getCarrera2"*/
             posicioJugador = getCarrera2(ArrayCamellsImatge, camells);
-            /*Si la variable "posicioJugador" es igual a la posicio X de "LiniaMeta" menys 100, trenca el bucle while*/
-            if (posicioJugador >= (LiniaMeta.getX()-75)) {
+            /*Si la variable "posicioJugador" es igual a la posicio X de "LiniaMeta" menys 67, trenca el bucle while*/
+            if (posicioJugador >= (LiniaMeta.getX()-67)) {
                 break;
             }
         }
@@ -98,8 +98,8 @@ public class HerenciaCamells extends CarreraCamells {
         int posicioJugador = 0;//Crea la variable "posicioJugador"
         /*I recorrera els ArrayLists "ArrayCamellsImatge" i "camells"*/
         for (int i = 0; i < ArrayCamellsImatge.size() && i < camells.size(); i++) {
-            /*Si el camell "actual" esta a una posicio X major o igual que la posicio X de "LiniaMeta" menys 100*/
-            if (ArrayCamellsImatge.get(i).getX() >= (LiniaMeta.getX()-75)) {
+            /*Si el camell "actual" esta a una posicio X major o igual que la posicio X de "LiniaMeta" menys 67*/
+            if (ArrayCamellsImatge.get(i).getX() >= (LiniaMeta.getX()-67)) {
                 /*Guarda la posicio del camell en la variable "posicioJugador", i trenca el bucle for*/
                 posicioJugador = (int) ArrayCamellsImatge.get(i).getX();
                 break;
