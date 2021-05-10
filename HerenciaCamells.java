@@ -1,10 +1,4 @@
 package Camells;
-
-/*Importa les següents llibraries*/
-import acm.graphics.*;
-import java.awt.*;
-import java.util.ArrayList;
-
 /**
  * @author Juan José Gómez Villegas
  * @author Jorge Luís Martínez Bermudez
@@ -13,20 +7,43 @@ import java.util.ArrayList;
  * @author Kirill Lupenkov
  * **/
 
-/*Crea la Classe "HerenciaCamells" que tingui amb herencia la classe "CarreraCamells"*/
+/**
+ * Importem les següents classes:
+ * @see acm.graphics
+ * @see java.awt
+ * @see java.util.ArrayList
+ * **/
+import acm.graphics.*;
+import java.awt.*;
+import java.util.ArrayList;
+
+/**
+ * Crea la Classe "HerenciaCamells" que tingui amb herencia la classe "CarreraCamells"
+ * @see CarreraCamells
+ * @version 1
+ * **/
 public class HerenciaCamells extends CarreraCamells {
-    /*Crea el metode main (principal)*/
+    /**
+     * Crea el metode main (Principal)
+     * @param args
+     */
     public static void main(String[] args) {new HerenciaCamells().start(args);}
 
-    /*Crea el metode setter "init"*/
+    /**
+     * Crea el metode setter "init"
+     * **/
     public void init() {
-        /*Estableix el tamany de la finestra en 975x750*/
+        /**
+         * setSize: Estableix el tamany de la finestra en 975x750
+         * setBackground: Estableix el color de fons de la finestra en el color especificat
+         * **/
         setSize(975, 750);
-        /*Estableix el color de fons de la finestra en el color especificat*/
         setBackground(Color.DARK_GRAY);
     }
 
-    /*Crea el metode setter "run", que executara la finestra*/
+    /**
+     * Crea el metode setter "run"
+     * **/
     public void run() {
         /*Creem el ArrayList "rutaImatgesCamells", on posarem la ruta de les imatges dels camells*/
         ArrayList<String> rutaImatgesCamells = new ArrayList<>();
@@ -61,7 +78,7 @@ public class HerenciaCamells extends CarreraCamells {
         /*Creem el ArrayList "camells"*/
         ArrayList<Camells> camells = new ArrayList<>();
 
-        /*Instanciem el metode "Camells", afegint un valor més al ArrayList "rutaImatgesCamells"*/
+        /*Recorrer l'ArrayList "rutaImatgesCamells" i tipusCamells, i per cada valor dels ArrayLists instancia el metode "Camells"*/
         for (int i = 0; i < rutaImatgesCamells.size() && i < tipusCamells.size(); i++) {
             camells.add(new Camells(rutaImatgesCamells.get(i), tipusCamells.get(i)));
         }
@@ -69,7 +86,7 @@ public class HerenciaCamells extends CarreraCamells {
         /*Creem el ArrayList "ArrayCamellsImatge"*/
         ArrayList<GImage> ArrayCamellsImatge = new ArrayList<>();
 
-        /*I per cada valor del ArrayList "camells", executa el metode getter "getImatgeCamell" (que retornara un GImage)*/
+        /*Recorrer l'ArrayList "camells", i per cada valor de "camells" executa el metode getter "getImatgeCamell"*/
         for (Camells actual : camells) {
             ArrayCamellsImatge.add(actual.getImatgeCamell());
         }
@@ -77,25 +94,31 @@ public class HerenciaCamells extends CarreraCamells {
         /*Executa el metode setter "setPreparaPista"*/
         setPreparaPista(ArrayCamellsImatge);
 
-        int posicioJugador = 0;//Crea la variable "posicioJugador"
         /*El bucle while funcionara mentre la variable "posicioJugador" sigui diferent a la posicio X de "LiniaMeta" menys 67*/
+        int posicioJugador = 0;
         while (posicioJugador != (LiniaMeta.getX()-67)) {
             /*Executa el metode getter "getCarrera2"*/
             posicioJugador = getCarrera2(ArrayCamellsImatge, camells);
-            /*Si la variable "posicioJugador" es igual a la posicio X de "LiniaMeta" menys 67, trenca el bucle while*/
+            /*I si la variable "posicioJugador" es igual a la posicio X de "LiniaMeta" menys 67, trenca el bucle while*/
             if (posicioJugador >= (LiniaMeta.getX()-67)) {
                 break;
             }
         }
 
-        /*I Executa el metode setter "setComprovarGuanyador"*/
+        /*Executa el metode setter "setComprovarGuanyador"*/
         setComprovarGuanyador(ArrayCamellsImatge);
     }
 
-    /*Crea el metode getter "getCarrera2"*/
+    /**
+     * Crea el metode getter "getCarrera2"
+     * @param ArrayCamellsImatge
+     * @param camells
+     * @return posicioJugador
+     * **/
     private int getCarrera2(ArrayList<GImage> ArrayCamellsImatge, ArrayList<Camells> camells) {
-        int numero;//Crea la variable "numero"
-        int posicioJugador = 0;//Crea la variable "posicioJugador"
+        /*Crea les variables "numero" i "posicioJugador"*/
+        int numero;
+        int posicioJugador = 0;
         /*I recorrera els ArrayLists "ArrayCamellsImatge" i "camells"*/
         for (int i = 0; i < ArrayCamellsImatge.size() && i < camells.size(); i++) {
             /*Si el camell "actual" esta a una posicio X major o igual que la posicio X de "LiniaMeta" menys 67*/
@@ -103,7 +126,7 @@ public class HerenciaCamells extends CarreraCamells {
                 /*Guarda la posicio del camell en la variable "posicioJugador", i trenca el bucle for*/
                 posicioJugador = (int) ArrayCamellsImatge.get(i).getX();
                 break;
-            } else {/*Si nom fara el següent*/
+            } else {/*Si no fara el següent*/
                 if (camells.get(i).getTipusCamell() == 1) {//Si el camell es Ràpid (1)
                     /*Executa el metode getter "getNumeroAleatori", per generar un numero aleatori entre 1 i 50*/
                     numero = getNumeroAleatori(1, 50);
@@ -145,9 +168,10 @@ public class HerenciaCamells extends CarreraCamells {
                     }
                 }
             }
-            ArrayCamellsImatge.get(i).pause(7);/*I pausa en 7 segons*/
+            /*I pausa en 7 segons*/
+            ArrayCamellsImatge.get(i).pause(7);
         }
-
-        return posicioJugador;/*Retorna el valor de "posicioJugador"*/
+        /*Retorna el valor de "posicioJugador"*/
+        return posicioJugador;
     }
 }
