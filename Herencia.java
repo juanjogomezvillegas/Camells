@@ -2,9 +2,9 @@ package Camells;
 /**
  * @author Juan José Gómez Villegas
  * @author Jorge Luís Martínez Bermudez
+ * @author Kirill Lupenkov
  * @author Edgar Peréz
  * @author Jordi Risco
- * @author Kirill Lupenkov
  * **/
 
 /**
