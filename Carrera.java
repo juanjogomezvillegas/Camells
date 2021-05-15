@@ -30,7 +30,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * **/
 public class Carrera extends GraphicsProgram {
     /**Create Variables protected**/
-    protected String ruta = "src/Camells";
+    protected String ruta = "src/Camells/Imatges";
     protected GLine LiniaMeta;
     /**Create Variables private**/
     private int daltImg;
