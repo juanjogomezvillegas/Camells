@@ -88,6 +88,8 @@ public class Carrera extends GraphicsProgram {
         /*Run the method setter "setPreparaPista"*/
         setPreparaPista(ArrayCamellsImatge);
 
+        waitForClick();/*Wait to the user to do click in the window*/
+
         int posicioJugador = 0;
         /*The loop will work while, the value of the variable "posicioJugador" be different to the position X the "LiniaMeta" less 50*/
         while (posicioJugador != (LiniaMeta.getX()-50)) {

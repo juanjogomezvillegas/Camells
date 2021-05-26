@@ -94,6 +94,8 @@ public class Herencia extends Carrera {
         /*Executa el metode setter "setPreparaPista"*/
         setPreparaPista(ArrayCamellsImatge);
 
+        waitForClick();/*Wait to the user to do click in the window*/
+
         /*El bucle while funcionara mentre la variable "posicioJugador" sigui diferent a la posicio X de "LiniaMeta" menys 67*/
         int posicioJugador = 0;
         while (posicioJugador != (LiniaMeta.getX()-67)) {
